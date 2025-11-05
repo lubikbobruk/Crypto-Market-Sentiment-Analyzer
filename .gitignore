@@ -1,12 +1,16 @@
-# Byte-compiled / optimized / DLL files
+# ==============================================
+#   PYTHON / CONDA / BI-PYT PROJECT GIT IGNORE
+# ==============================================
+
+# ---- Python bytecode ----
 __pycache__/
 *.py[cod]
 *$py.class
-
-# C extensions
+*.pyo
+*.pyd
 *.so
 
-# Distribution / packaging
+# ---- Build / Distribution ----
 .Python
 build/
 develop-eggs/
@@ -27,17 +31,17 @@ share/python-wheels/
 *.egg
 MANIFEST
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+# ---- PyInstaller ----
 *.manifest
 *.spec
 
-# Installer logs
+# ---- Logs ----
+logs/
+*.log
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Unit test / coverage reports
+# ---- Unit test / Coverage ----
 htmlcov/
 .tox/
 .nox/
@@ -50,67 +54,68 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
-# Translations
-*.mo
-*.pot
+# ---- Data ----
+data/raw/
+data/processed/
+data/*.csv
+data/*.json
+data/*.xlsx
 
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
+# ---- Config / Secrets ----
+config/secrets.yaml
 
-# Flask stuff:
-instance/
-.webassets-cache
+# ---- Reports ----
+reports/figures/
+reports/*.pdf
 
-# Scrapy stuff:
-.scrapy
+# ---- Streamlit ----
+.streamlit/
 
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# celery beat schedule file
-celerybeat-schedule
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
+# ---- Environments ----
+.venv/
 venv/
+env/
 ENV/
 env.bak/
 venv.bak/
+.env
+.env.bak
+# Conda environments
+*.yml
+*.yaml
 
-# Spyder project settings
+# ---- IDE / Editor ----
+.vscode/
+.idea/
+*.code-workspace
+
+# ---- Jupyter / IPython ----
+.ipynb_checkpoints/
+profile_default/
+ipython_config.py
+
+# ---- Databases / Local settings ----
+local_settings.py
+db.sqlite3
+
+# ---- Flask / Django ----
+instance/
+.webassets-cache
+
+# ---- Scrapy / Sphinx / PyBuilder ----
+.scrapy/
+docs/_build/
+target/
+
+# ---- Spyder / Rope / MkDocs ----
 .spyderproject
 .spyproject
-
-# Rope project settings
 .ropeproject
-
-# mkdocs documentation
 /site
 
-# mypy
+# ---- pyenv / mypy / pyre ----
+.python-version
 .mypy_cache/
 .dmypy.json
 dmypy.json
-
-# Pyre type checker
 .pyre/
