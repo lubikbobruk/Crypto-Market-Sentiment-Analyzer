@@ -29,8 +29,7 @@ conda activate crypto-sentiment
 
 ```bash
 conda install pandas numpy matplotlib pytest pyyaml -y
-pip install streamlit vaderSentiment yfinance snscrape praw 
-flake8 black
+pip install streamlit vaderSentiment yfinance snscrape praw flake8 black
 ```
  - Run the Streamlit app
 
