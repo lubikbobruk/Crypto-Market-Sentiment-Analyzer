@@ -81,8 +81,13 @@ venv.bak/
 .env
 .env.bak
 # Conda environments
-*.yml
-*.yaml
+environment.yml
+environment.yaml
+env.yml
+env.yaml
+
+# Secrets
+config/secrets.yaml
 
 # ---- IDE / Editor ----
 .vscode/

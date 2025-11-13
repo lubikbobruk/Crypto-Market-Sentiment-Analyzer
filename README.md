@@ -5,7 +5,7 @@ This project is developed as part of the **BI-PYT.21** course at **FIT ČVUT**.
 ---
 
 ## 🚀 Project Overview
-The application collects data from **Reddit**, **X**, and **NewsAPI**, performs **text preprocessing**, applies **sentiment analysis** (VADER), retrieves **market data** via `yfinance`, and visualizes results using **Streamlit**.  
+The application collects data from **Reddit**, **Telegram**, and **NewsAPI**, performs **text preprocessing**, applies **sentiment analysis** (VADER), retrieves **market data** via `yfinance`, and visualizes results using **Streamlit**.  
 **Current status:** `Phase 1 – Data Collection `  
 
 ---
@@ -29,7 +29,7 @@ conda activate crypto-sentiment
 
 ```bash
 conda install pandas numpy matplotlib pytest pyyaml -y
-pip install streamlit vaderSentiment yfinance snscrape praw flake8 black
+pip install streamlit vaderSentiment yfinance snscrape praw flake8 black telethon
 ```
  - Run the Streamlit app
 
@@ -44,28 +44,38 @@ python -m streamlit run app\visualization\streamlit_app.py
 
 ---
 
-## 🔑 Reddit API Setup (Required for Reddit Collector)
+## 🔑 API Setup Guide
 
-To use the Reddit collector, you must provide your own Reddit API credentials.
+This project requires API credentials for Reddit and Telegram to collect data.
 
-1. Log in to Reddit and open [https://www.reddit.com/prefs/apps](https://www.reddit.com/prefs/apps).
+### 🟥 Reddit API
+1. Visit [https://www.reddit.com/prefs/apps](https://www.reddit.com/prefs/apps).  
 2. Click **Create another app** and fill in:
-   | Field | Value |
-   |--------|--------|
-   | **Name:** | `CryptoSentimentAnalyzer` |
-   | **Type:** | `script` |
-   | **Description:** | `Semestral project for BI-PYT` |
-   | **Redirect URI:** | `http://localhost:8080` |
-3. After creation, copy the **client ID** (under “personal use script”) and **secret**.
-4. Create a file `config/secrets.yaml` (not committed to Git) and add:
+   - **Name:** `CryptoSentimentAnalyzer`  
+   - **Type:** `script`  
+   - **Redirect URI:** `http://localhost:8080`  
+3. After creation, copy:
+   - `client_id` (shown under “personal use script”)  
+   - `client_secret`  
+   - `user_agent`
+4. Add them to your config file:
 
    ```yaml
    reddit:
-     client_id: "YOUR_CLIENT_ID"
-     client_secret: "YOUR_CLIENT_SECRET"
-     user_agent: "crypto-analyzer"
+     client_id: *here*
+     client_secret: *here*
+     user_agent: *here*
 
 
-# Topic of your semestral work
+### 🟦 Telegram API
+1. Go to [https://my.telegram.org](https://my.telegram.org) and log in.  
+2. Open **API Development Tools** → fill out the form (any app name and short name).  
+3. Copy your generated:
+   - `api_id`
+   - `api_hash`
+4. Add them to the same `config/secrets.yaml` file:
 
-Describe a function of developed application, necessary dependencies (e.g. utilize requirements.txt), how to start it, and last but not least how to run tests from CLI.
+   ```yaml
+   telegram:
+     api_id: *here*
+     api_hash: *here*
