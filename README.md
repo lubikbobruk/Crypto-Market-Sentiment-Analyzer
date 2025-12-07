@@ -6,7 +6,7 @@ This project is developed as part of the **BI-PYT.21** course at **FIT ČVUT**.
 
 ## 🚀 Project Overview
 The application collects data from **Reddit**, **Telegram**, and **NewsAPI**, performs **text preprocessing**, applies **sentiment analysis** (VADER), retrieves **market data** via `yfinance`, and visualizes results using **Streamlit**.  
-**Current status:** `Phase 1 – Data Collection `  
+**Current status:** `Phase 2 – Data Preprocessing`  
 
 ---
 
@@ -79,3 +79,23 @@ This project requires API credentials for Reddit and Telegram to collect data.
    telegram:
      api_id: *here*
      api_hash: *here*
+
+# 🚀 Project Roadmap
+
+* Phase 0 — Setup: Initialize project structure, config files, and environment. ✅
+
+* Phase 1 — Collectors: Implement Reddit/X/Telegram data collection modules. ✅
+
+* Phase 2 — Text Preprocessing: Clean and normalize raw text into a unified format. ✅
+
+* Phase 3 — Sentiment Analysis: Apply VADER scoring with interpretation logic.
+
+* Phase 4 — Market Data: Retrieve crypto price data using yfinance.
+
+* Phase 5 — Analytics: Compute sentiment–price correlations and market sentiment metrics.
+
+* Phase 6 — Visualization: Build Streamlit UI with charts and post previews.
+
+* Phase 7 — Testing: Add unit tests, coverage, and CLI validation.
+
+* Phase 8 — Documentation: Finalize README, reports, and project cleanup.
