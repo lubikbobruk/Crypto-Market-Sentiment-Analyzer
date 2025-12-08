@@ -84,18 +84,26 @@ This project requires API credentials for Reddit and Telegram to collect data.
 
 * Phase 0 — Setup: Initialize project structure, config files, and environment. ✅
 
-* Phase 1 — Collectors: Implement Reddit/X/Telegram data collection modules. ✅
+* Phase 1 — Collectors: Implement Reddit/Telegram data collection modules. ✅
 
 * Phase 2 — Text Preprocessing: Clean and normalize raw text into a unified format. ✅
 
-* Phase 3 — Sentiment Analysis: Apply VADER scoring with interpretation logic.
+* Phase 3 — Sentiment Analysis: Apply VADER scoring with interpretation logic. ✅
 
-* Phase 4 — Market Data: Retrieve crypto price data using yfinance.
+* Phase 4 — CLI: Enable preprocessing, sentiment scoring, and exporting via CLI.
 
-* Phase 5 — Analytics: Compute sentiment–price correlations and market sentiment metrics.
+* Phase 5 — Streamlit UI: Interactive app for browsing and filtering sentiment data.
 
-* Phase 6 — Visualization: Build Streamlit UI with charts and post previews.
+* Phase 6 — Visualization: Add charts (timelines, heatmaps, sentiment stats).
 
-* Phase 7 — Testing: Add unit tests, coverage, and CLI validation.
+* Phase 7 — Testing & CI: Extend tests, add integration checks, prepare CI pipeline.
 
-* Phase 8 — Documentation: Finalize README, reports, and project cleanup.
+* Phase 8 — PEP8 Audit: Ensure full codebase matches PEP8 and project codestyle.
+
+* Phase 9 — Docs: Finalize README, architecture notes, and project cleanup.
+
+**Optional:**
+
+* Phase 10 — Market Data: Fetch crypto prices with yfinance and sync with sentiment.
+* Phase 11 — Analytics: Compute correlations, sentiment metrics, and spike events.
+* Phase 12 - Finalize again: Follow steps from phases 7-9 for updated version.

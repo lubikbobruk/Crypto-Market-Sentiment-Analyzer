@@ -15,7 +15,6 @@ def test_remove_mentions():
     assert remove_mentions("@a @b hello") == "  hello"
     assert remove_mentions("no usernames") == "no usernames"
 
-
 def test_remove_markdown():
     assert remove_markdown("Click [here](https://binance.com)") == "Click "
     text = "[a](x) and [b](y)"

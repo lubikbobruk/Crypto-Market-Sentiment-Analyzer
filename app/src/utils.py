@@ -2,7 +2,7 @@
 import re
 import pandas as pd
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-from sentiment_core import get_analyzer
+from .sentiment_core import get_analyzer
 
 URL_PATTERN = re.compile(r"(https?://\S+|www\.\S+)")
 MENTION_PATTERN = re.compile(r"@\w+")
