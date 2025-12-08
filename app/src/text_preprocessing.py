@@ -70,3 +70,16 @@ def preprocess_csv(csv_path: str, source: str, processed_root: Path):
     print(f"Saved hard cleaned here: {hard_out}")
 
     return soft_out, hard_out
+
+
+
+"""
+FOR CLI run:
+from config.config import PROCESSED_DIR
+
+preprocess_csv(
+    csv_path="data/raw/Reddit/xrp_2025-11-13.csv",
+    source="reddit",
+    processed_root=PROCESSED_DIR
+)
+"""

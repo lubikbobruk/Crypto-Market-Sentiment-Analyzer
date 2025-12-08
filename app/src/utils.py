@@ -1,8 +1,15 @@
 '''Provides a stack of different helper functions.'''
 import re
 import pandas as pd
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+from .lexicon.loader import get_all_lexicons
 
-# Regex patterns
+# Initialize analyzer
+analyzer = SentimentIntensityAnalyzer()
+
+# Load custom lexicons
+custom_lexicon = get_all_lexicons()
+analyzer.lexicon.update(custom_lexicon)
 
 URL_PATTERN = re.compile(r"(https?://\S+|www\.\S+)")
 MENTION_PATTERN = re.compile(r"@\w+")
@@ -14,7 +21,7 @@ MULTISPACE_PATTERN = re.compile(r"\s+")
 # ------------------------
 
 def remove_urls(text: str) -> str:
-    """Remove http/https URLs."""
+    """Remove URLs."""
     return URL_PATTERN.sub("", text)
 
 def remove_mentions(text: str) -> str:
@@ -74,3 +81,25 @@ def combine_csv(csv_path: str) -> pd.DataFrame:
         df["combined"] = ""
 
     return df
+
+# ----------
+# Sentiment 
+# ----------
+
+def classify_sentiment(score: float) -> str:
+    """Interpret VADER compound score."""
+    if score >= 0.05:
+        return "positive"
+    elif score <= -0.05:
+        return "negative"
+    else:
+        return "neutral"
+
+def get_analyzer():
+    """Return the globally configured VADER analyzer."""
+    return analyzer
+
+def compute_sentiment(text: str) -> float:
+    analyzer = get_analyzer()
+    scores = analyzer.polarity_scores(str(text))
+    return scores["compound"]

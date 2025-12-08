@@ -7,9 +7,12 @@ DATA_DIR = PROJECT_ROOT / "data"
 CONFIG_DIR = PROJECT_ROOT / "config"
 RAW_DIR = DATA_DIR / "raw"
 PROCESSED_DIR = DATA_DIR / "processed"
-
+SRC_DIR = PROJECT_ROOT / "app" / "src"
 REDDIT_RAW = RAW_DIR / "reddit"
 TELEGRAM_RAW = RAW_DIR / "telegram"
+
+# Lexicon directory
+LEXICON_DIR = SRC_DIR / "lexicon"
 
 # Config files
 SECRETS_FILE = CONFIG_DIR / "secrets.yaml"
