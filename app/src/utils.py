@@ -2,14 +2,7 @@
 import re
 import pandas as pd
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-from .lexicon.loader import get_all_lexicons
-
-# Initialize analyzer
-analyzer = SentimentIntensityAnalyzer()
-
-# Load custom lexicons
-custom_lexicon = get_all_lexicons()
-analyzer.lexicon.update(custom_lexicon)
+from sentiment_core import get_analyzer
 
 URL_PATTERN = re.compile(r"(https?://\S+|www\.\S+)")
 MENTION_PATTERN = re.compile(r"@\w+")
@@ -94,10 +87,6 @@ def classify_sentiment(score: float) -> str:
         return "negative"
     else:
         return "neutral"
-
-def get_analyzer():
-    """Return the globally configured VADER analyzer."""
-    return analyzer
 
 def compute_sentiment(text: str) -> float:
     analyzer = get_analyzer()

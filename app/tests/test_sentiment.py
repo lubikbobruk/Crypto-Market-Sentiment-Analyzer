@@ -1,6 +1,6 @@
 import pandas as pd
-from app.src.utils import classify_sentiment, compute_sentiment, get_analyzer
-from app.src.sentiment import analyze_sentiment
+from app.src.utils import classify_sentiment, compute_sentiment
+from app.src.sentiment_core import get_analyzer
 
 def test_classify_sentiment():
     assert classify_sentiment(0.5) == "positive"
