@@ -91,17 +91,19 @@ This project requires API credentials for Reddit and Telegram to collect data.
 
 * Phase 3 — Sentiment Analysis: Apply VADER scoring with interpretation logic. ✅
 
-* Phase 4 — CLI: Enable preprocessing, sentiment scoring, and exporting via CLI.
+* Phase 4 — CLI: Enable preprocessing, sentiment scoring, and exporting via CLI. ✅
 
-* Phase 5 — Streamlit UI: Interactive app for browsing and filtering sentiment data.
+* Phase 5 — Streamlit UI: Interactive browsing, filters, visualization.
 
-* Phase 6 — Visualization: Add charts (timelines, heatmaps, sentiment stats).
+* Phase 6 — Visualization Engine: timelines, heatmaps, sentiment stats.
 
-* Phase 7 — Testing & CI: Extend tests, add integration checks, prepare CI pipeline.
+* Phase 7 — Social-Reaction Scoring: reactions → emoji sentiment → weighted model.
 
-* Phase 8 — PEP8 Audit: Ensure full codebase matches PEP8 and project codestyle.
+* Phase 8 — Testing & CI: Extend tests, integration checks, CLI coverage.
 
-* Phase 9 — Docs: Finalize README, architecture notes, and project cleanup.
+* Phase 9 — PEP8 Audit: Ensure full compliance with codestyle.
+
+* Phase 10 — Docs: README, architecture notes, final cleanup.
 
 **Optional:**
 
