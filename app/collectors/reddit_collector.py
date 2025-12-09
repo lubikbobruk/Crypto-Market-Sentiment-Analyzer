@@ -33,12 +33,3 @@ def collect_reddit(query, subs, limit, period):
             })
     print(f"Collected {len(posts)} posts")
     return posts
-
-def main():
-    subs, limit, period = utls.load_defaults("reddit")
-    query = input("Your query: ").strip()
-    posts = collect_reddit(query, subs["subreddits"], limit, period)
-    utls.save_to_csv(posts, "reddit", query.lower())
-
-if __name__ == "__main__":
-    main()

@@ -29,14 +29,34 @@ def analyze_sentiment(csv_path: str, processed_root: Path, source: str):
     print(f"Sentiment computed and saved here: {out_path}")
     return out_path
 
-''''
-FOR CLI run
-if __name__ == "__main__":
-    from config.config import PROCESSED_DIR
-    analyze_sentiment(
-        csv_path="data/processed/Reddit/soft/xrp_2025-11-13_soft.csv",
-        processed_root=PROCESSED_DIR,
-        source="reddit"
-    )
-'''
+def total_sentiment(csv_path: str, platform: str):
+    """
+    Compute total sentiment score weighted by post score(reddit) & views (telegram). 
+    """
+    df = pd.read_csv(csv_path)
+
+    if "compound" not in df.columns:
+        raise ValueError("CSV does not contain sentiment info.")
+
+    if platform == "reddit" and "score" not in df.columns:
+        raise ValueError("Reddit sentiment requires a score column for weighting.")
+
+    # reddit by weighted sentiment
+    if platform == "reddit":
+        df["weight"] = df["score"].clip(lower=0)
+
+        total_weight = df["weight"].sum()
+
+        if total_weight == 0:
+            simple_average = df["compound"].mean()
+            return round(simple_average, 3)
+
+        weighted_sum = (df["compound"] * df["weight"]).sum()
+        weighted_average = weighted_sum / total_weight
+
+        return round(weighted_average, 3)
     
+    # telegram by average
+    if platform == "telegram":
+        simple_average = df["compound"].mean()
+        return round(simple_average, 3)

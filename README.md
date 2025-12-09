@@ -5,8 +5,8 @@ This project is developed as part of the **BI-PYT.21** course at **FIT ČVUT**.
 ---
 
 ## 🚀 Project Overview
-The application collects data from **Reddit**, **Telegram**, and **NewsAPI**, performs **text preprocessing**, applies **sentiment analysis** (VADER), retrieves **market data** via `yfinance`, and visualizes results using **Streamlit**.  
-**Current status:** `Phase 2 – Data Preprocessing`  
+The application collects data from **Reddit**, **Telegram**, and **NewsAPI**, performs **text preprocessing**, applies **sentiment analysis** (VADER), retrieves **market data** via `yfinance`, and visualizes results using **Streamlit** or **CLI**.  
+**Current status:** `Phase 4 — CLI`  
 
 ---
 
@@ -36,8 +36,7 @@ pip install streamlit vaderSentiment yfinance snscrape praw flake8 black teletho
 ```bash
 #Ensure you are on a right Path and conda is activated
 conda activate crypto-sentiment
-cd C:\Users\Lubomyr\Desktop\bobroliu
-
+cd *root folder of the project*
 #Run
 python -m streamlit run app\visualization\streamlit_app.py
 ```
