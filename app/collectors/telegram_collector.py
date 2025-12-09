@@ -23,8 +23,8 @@ def collect_channel(client, name, keyword, since_time, limit):
             "id": m.id,
             "datetime": m.date.astimezone(timezone.utc).isoformat(),
             "text": m.text.strip(),
-            "views": m.views,
-        })
+            "views": m.views})
+        
         if len(msgs) >= limit:
             break
     return msgs

@@ -31,5 +31,6 @@ def collect_reddit(query, subs, limit, period):
                 "datetime": datetime.fromtimestamp(submitions.created_utc, tz=timezone.utc).isoformat(),
                 "link": f"https://reddit.com{submitions.permalink}",
             })
+            
     print(f"Collected {len(posts)} posts")
     return posts

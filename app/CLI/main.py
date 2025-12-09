@@ -1,6 +1,6 @@
 """
 Main CLI entry point for the Crypto Sentiment Analyzer.
-Platform → Coin → Period → Options (Sentiment / Reviews)
+Platform → Coin → Period → Options (Sentiment / Reviews).
 """
 
 from app.cli.menu import (
@@ -27,19 +27,19 @@ def main():
         coin = coin_menu().upper()
         period = date_menu()
 
-        # ---- DATA COLLECTION ----
         csv_path = check_data_exists(platform, coin, period)
 
         if csv_path is None:
-            print("\n⚠ No data available for this selection. Try different period.")
+            print("\nNo data available for this selection. Try different period.")
             input("Press ENTER to continue...")
             continue
 
-        # ---- PREPROCESSING ----
         soft_path = run_preprocessing(csv_path, platform)
 
-        # ---- ACTION MENU (NO RETURN) ----
-        options_menu(csv_path, soft_path, platform)
+        result = options_menu(csv_path, soft_path, platform)
+        if result == "restart":
+            continue
+
 
 
 if __name__ == "__main__":

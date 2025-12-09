@@ -10,22 +10,24 @@ def start_menu():
     wait("Press ENTER to start.")
 
 def platform_menu():
-    """Select valid platform."""
     while True:
         clear_screen()
         choices = {"1": "reddit", "2": "telegram"}
-        selection = ask_choice("Choose a platform:", choices)
 
-        if selection:
-            return selection.lower()
+        aliases = {
+            "r": "1",
+            "reddit": "1",
+            "t": "2",
+            "telegram": "2",
+        }
 
-        wait("Invalid choice. Try again.")
-
+        selection = ask_choice("Choose a platform:", choices, aliases)
+        return selection.lower()
 
 def coin_menu():
-    """Select valid coin or a custom one."""
     while True:
         clear_screen()
+
         choices = {
             "1": "BTC",
             "2": "ETH",
@@ -35,25 +37,30 @@ def coin_menu():
             "6": "Custom"
         }
 
-        selection = ask_choice("Choose a coin:", choices)
+        aliases = {
+            "btc": "1", "b": "1",
+            "eth": "2", "e": "2",
+            "bnb": "3",
+            "sol": "4",
+            "xrp": "5",
+            "custom": "6", "c": "6",
+        }
 
-        if selection is None:
-            wait("Invalid choice. Try again.")
-            continue
+        selection = ask_choice("Choose a coin:", choices, aliases)
 
         if selection == "Custom":
             while True:
-                coin = input("\nEnter custom coin name: ").strip()
+                coin = input("Enter custom coin name: ").strip()
                 if coin:
                     return coin.upper()
                 wait("Invalid coin name. Try again.")
 
-        return selection.upper()
+        return selection
 
 def date_menu():
-    """Select valid time period."""
     while True:
         clear_screen()
+
         choices = {
             "1": "day",
             "2": "week",
@@ -61,37 +68,40 @@ def date_menu():
             "4": "year"
         }
 
-        selection = ask_choice("Choose a time period:", choices)
+        aliases = {
+            "d": "1", "day": "1",
+            "w": "2", "week": "2",
+            "m": "3", "month": "3",
+            "y": "4", "year": "4",
+        }
 
-        if selection:
-            return selection
-
-        wait("Invalid choice. Try again.")
+        selection = ask_choice("Choose a time period:", choices, aliases)
+        return selection
 
 
 def options_menu(csv_path, soft_path, platform):
-    """
-    Executes the selected action:
-    1: Sentiment analysis + total score.
-    2: Print reviews.
-    3: Exit program.
-    """
-
     while True:
         clear_screen()
+
         choices = {
             "1": "Get sentiment",
             "2": "Get reviews",
-            "3": "Exit"
+            "3": "Go back",
+            "4": "Exit"
         }
 
-        selection = ask_choice("What would you like to do?", choices)
-        if not selection:
-            wait("Invalid choice. Try again.")
-            continue
+        aliases = {
+            "s": "1", "sentiment": "1",
+            "r": "2", "review": "2", "reviews": "2",
+            "b": "3", "back": "3", "menu": "3",
+            "e": "4", "exit": "4", "quit": "4"
+        }
+
+        selection = ask_choice("What would you like to do?", choices, aliases)
 
         if selection == "Get sentiment":
-            print("\nRunning sentiment analysis...\n")
+            clear_screen()
+            print("Running sentiment analysis...\n")
 
             sentiment_csv = analyze_sentiment(
                 soft_path,
@@ -100,20 +110,24 @@ def options_menu(csv_path, soft_path, platform):
             )
 
             score = total_sentiment(sentiment_csv, platform)
-            print(f"\nTotal sentiment score: {score:.3f}\n")
+
+            print(f"\nTotal sentiment score: {score:.3f}")
             trend = "positive" if score > 0 else "negative"
-            print(f"\nThe market looks {trend}.")
+            print(f"The market looks {trend}.")
+
             wait()
             continue
 
-        # --- Option 2: sample reviews ---
         elif selection == "Get reviews":
-            print("\n📰 Showing sample posts:")
+            clear_screen()
+            print("Showing sample posts:\n")
             get_sample_reviews(csv_path)
             wait()
             continue
 
-        # --- Option 3: exit program ---
         elif selection == "Exit":
-            print("\n👋 Goodbye!")
+            print("\nGoodbye! 👋")
             raise SystemExit(0)
+
+        elif selection == "Go back":
+            return "restart"

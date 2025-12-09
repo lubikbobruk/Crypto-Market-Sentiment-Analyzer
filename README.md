@@ -79,6 +79,8 @@ This project requires API credentials for Reddit and Telegram to collect data.
      api_id: *here*
      api_hash: *here*
 
+**P.S. You must have internet connection for API calls to work, program can't be run offline.**
+
 # 🚀 Project Roadmap
 
 * Phase 0 — Setup: Initialize project structure, config files, and environment. ✅

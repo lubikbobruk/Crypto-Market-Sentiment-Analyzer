@@ -8,18 +8,28 @@ def clear_screen():
     else:
         _ = system('clear')
 
-def ask_choice(prompt, choices: dict):
+def ask_choice(prompt: str, choices: dict, aliases: dict = None):
     """
-    Gives a chocie and returns it.
+    Flexible choice parser that supports numbers and texts.
     """
+
     while True:
         print(prompt)
         for key, val in choices.items():
             print(f"{key}) {val}")
-        answer = input("> ").strip()
+
+        answer = input("> ").strip().lower()
 
         if answer in choices:
             return choices[answer]
+
+        if aliases and answer in aliases:
+            key = aliases[answer]
+            return choices[key]
+
+        for key, val in choices.items():
+            if answer == val.lower():
+                return val
 
         print("Invalid choice, try again.\n")
 
