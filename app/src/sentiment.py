@@ -56,7 +56,18 @@ def total_sentiment(csv_path: str, platform: str):
 
         return round(weighted_average, 3)
     
-    # telegram by average
     if platform == "telegram":
-        simple_average = df["compound"].mean()
-        return round(simple_average, 3)
+            if "views" not in df.columns:
+                raise ValueError("Telegram messages must include a 'views' column.")
+
+            df["weight"] = df["views"].fillna(0).clip(lower=1)
+
+            total_weight = df["weight"].sum()
+
+            if total_weight == 0:
+                return round(df["compound"].mean(), 3)
+
+            weighted_sum = (df["compound"] * df["weight"]).sum()
+            weighted_avg = weighted_sum / total_weight
+
+            return round(weighted_avg, 3)
