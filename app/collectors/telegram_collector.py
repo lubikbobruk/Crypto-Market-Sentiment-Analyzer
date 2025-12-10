@@ -1,55 +1,63 @@
 """
-Telegram data collector for Crypto Market Sentiment Analyzer.
-
-Fetches messages from selected public Telegram crypto channels
-and saves them into data/raw/telegram/telegram_<period>_<keyword>_<date>.csv
+Telegram data collector (sync for CLI, async for Streamlit).
 """
-
-from telethon.sync import TelegramClient
+import asyncio
 from datetime import timezone
-from app.collectors import utils_collectors as utls
+from telethon import TelegramClient
+from app.collectors.utils_collectors import is_valid, extract_features
 
-def collect_channel(client, name, keyword, since_time, limit):
+# Sync for CLI
+
+def collect_channel(client, ch, keyword, since, limit):
     msgs = []
-    for m in client.iter_messages(name):
-        if not m.text or m.date < since_time:
-            break
-        if keyword and keyword.lower() not in m.text.lower():
+    for m in client.iter_messages(ch):
+        if not is_valid(m, keyword, since):
             continue
-        if not utls.is_valid_post(m.text):
-            continue
-        msgs.append({
-            "channel": name,
-            "id": m.id,
-            "datetime": m.date.astimezone(timezone.utc).isoformat(),
-            "text": m.text.strip(),
-            "views": m.views})
-        
-        if len(msgs) >= limit:
+        msgs.append(extract_features(m, ch))
+        if len(msgs) >= limit or m.date < since:
             break
     return msgs
 
+
 def collect_telegram(keyword, chans, limit, period, creds):
-    """Collect messages from all Telegram channels."""
-    since_time = utls.get_since_time(period)
-    all_msgs = []
+    since = utls.get_since_time(period)
+    api_id, api_hash = int(creds["api_id"]), creds["api_hash"]
+    msgs = []
 
-    with TelegramClient("crypto_session", int(creds["api_id"]), creds["api_hash"]) as client:
+    with TelegramClient("tg_cli", api_id, api_hash) as client:
         for ch in chans["channels"]:
-            all_msgs.extend(collect_channel(client, ch, keyword, since_time, limit))
+            try:
+                msgs.extend(collect_channel(client, ch, keyword, since, limit))
+            except Exception as e:
+                print(f"Channel {ch} failed: {e}")
 
-    print(f"Collected {len(all_msgs)} messages")
-    return all_msgs
+    print(f"Collected {len(msgs)} messages (sync)")
+    return msgs
+
+# Async for streamlit
+
+async def collect_channel_async(client, ch, keyword, since, limit):
+    msgs = []
+    async for m in client.iter_messages(ch, limit=limit * 2):  # oversample
+        if not is_valid(m, keyword, since):
+            continue
+        msgs.append(extract_features(m, ch))
+        if len(msgs) >= limit or m.date < since:
+            break
+    return msgs
 
 
-def main():
-    chans, limit, period = utls.load_defaults("telegram")
-    creds = utls.load_api("telegram")
-    keyword = input("Your query: ").strip() or None
+async def telegram_collect_async(keyword, chans, limit, period, creds):
+    since = utls.get_since_time(period)
+    api_id, api_hash = int(creds["api_id"]), creds["api_hash"]
+    msgs = []
 
-    all_msgs = collect_telegram(keyword, chans, limit, period, creds)
-    utls.save_to_csv(all_msgs, "telegram", f"telegram_{period}")
+    async with TelegramClient("tg_async", api_id, api_hash) as client:
+        for ch in chans["channels"]:
+            try:
+                msgs.extend(await collect_channel_async(client, ch, keyword, since, limit))
+            except Exception as e:
+                print(f"Channel {ch} failed: {e}")
 
-
-if __name__ == "__main__":
-    main()
+    print(f"Collected {len(msgs)} messages (async)")
+    return msgs

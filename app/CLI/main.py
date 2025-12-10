@@ -2,18 +2,8 @@
 Main CLI entry point for the Crypto Sentiment Analyzer.
 Platform → Coin → Period → Options (Sentiment / Reviews).
 """
-
-from app.cli.menu import (
-    start_menu,
-    platform_menu,
-    coin_menu,
-    date_menu,
-    options_menu,
-)
-from app.cli.actions import (
-    check_data_exists,
-    run_preprocessing,
-)
+from app.cli.menu import *
+from app.cli.actions import check_data_exists,run_preprocessing
 from app.cli.utils_cli import clear_screen
 
 
@@ -39,8 +29,6 @@ def main():
         result = options_menu(csv_path, soft_path, platform)
         if result == "restart":
             continue
-
-
 
 if __name__ == "__main__":
     main()

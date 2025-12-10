@@ -5,8 +5,8 @@ This project is developed as part of the **BI-PYT.21** course at **FIT ČVUT**.
 ---
 
 ## 🚀 Project Overview
-The application collects data from **Reddit**, **Telegram**, and **NewsAPI**, performs **text preprocessing**, applies **sentiment analysis** (VADER), retrieves **market data** via `yfinance`, and visualizes results using **Streamlit** or **CLI**.  
-**Current status:** `Phase 4 — CLI`  
+The application collects data from **Reddit** and **Telegram**, performs **text preprocessing**, applies **sentiment analysis** (VADER) and visualizes results using **CLI** and **Streamlit**.  
+**Current status:** `Phase 5 — Streamlit UI`  
 
 ---
 
@@ -95,18 +95,15 @@ This project requires API credentials for Reddit and Telegram to collect data.
 
 * Phase 5 — Streamlit UI: Interactive browsing, filters, visualization.
 
-* Phase 6 — Visualization Engine: timelines, heatmaps, sentiment stats.
+* Phase 6 — PEP8 Audit: Ensure full compliance with codestyle.
 
-* Phase 7 — Social-Reaction Scoring: reactions → emoji sentiment → weighted model.
+* Phase 7 — Docs: README, architecture notes, final cleanup.
 
-* Phase 8 — Testing & CI: Extend tests, integration checks, CLI coverage.
+**Optional for future development:**
 
-* Phase 9 — PEP8 Audit: Ensure full compliance with codestyle.
-
-* Phase 10 — Docs: README, architecture notes, final cleanup.
-
-**Optional:**
-
-* Phase 10 — Market Data: Fetch crypto prices with yfinance and sync with sentiment.
-* Phase 11 — Analytics: Compute correlations, sentiment metrics, and spike events.
-* Phase 12 - Finalize again: Follow steps from phases 7-9 for updated version.
+* Phase 8 — Social-Reaction Scoring: Computing sentiment reactions on posts.
+* Phase 9 — Market Data: Fetch crypto prices with yfinance and sync with sentiment.
+* Phase 10 — Analytics: Compute correlations, sentiment metrics, and spike events.
+* Phase 11 - Finalize again: Follow steps from phases 7-9 for updated version.
+* Phase 12 - Adding News: Creating collector, preprocessing, sentiment, cli & 
+streamlit
