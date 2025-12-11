@@ -1,5 +1,5 @@
 # 🧠 Crypto Market Sentiment Analyzer
-A Python application that analyzes **media and social-media sentiment** of cryptocurrency markets and compares it with market indicators such as price movement and volatility. The goal is to explore how public sentiment correlates with short-term market behavior.  
+A Python application that analyzes **social-media sentiment** of cryptocurrency markets and compares it with market indicators such as price movement and volatility. The goal is to explore how public sentiment correlates with short-term market behavior.  
 This project is developed as part of the **BI-PYT.21** course at **FIT ČVUT**.
 
 ---
