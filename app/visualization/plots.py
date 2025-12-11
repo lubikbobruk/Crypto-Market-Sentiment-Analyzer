@@ -1,10 +1,8 @@
+"""Plotting utilities for visualizing sentiment data in Streamlit."""
+
 import pandas as pd
 import streamlit as st
 import plotly.express as px
-
-
-def has_enough_data(df: pd.DataFrame, min_count: int = 10):
-    return df is not None and len(df) >= min_count
 
 
 def plot_sentiment_distribution(df: pd.DataFrame):
@@ -87,10 +85,10 @@ def plot_sentiment_pie(df: pd.DataFrame):
 
 
 def plot_post_timeline(df: pd.DataFrame, period: str):
-    """Plot posting activity.
-
-    - If period == 'day' → group by hour
-    - Else → group by date
+    """
+    Plot posting activity.
+    Group by hour if chosen period is day.
+    Otherwise group by date.
     """
 
     import plotly.express as px

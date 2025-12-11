@@ -14,6 +14,10 @@ from app.collectors.utils_collectors import (
 
 
 def collect_channel(client, ch, keyword, since, limit):
+    """
+    Collect messages from a single Telegram channel
+    using synchronous Telethon.
+    """
     msgs = []
     for m in client.iter_messages(ch, limit=limit):
         if not is_valid(m, keyword, since):
@@ -28,6 +32,10 @@ def collect_channel(client, ch, keyword, since, limit):
 
 
 def collect_telegram(keyword, chans, limit, period, creds):
+    """
+    Collect Telegram messages from multiple channels
+    using the synchronous collector.
+    """
     since = get_since_time(period)
     api_id = int(creds["api_id"])
     api_hash = creds["api_hash"]
@@ -59,6 +67,10 @@ def collect_telegram(keyword, chans, limit, period, creds):
 
 
 async def collect_channel_async(client, ch, keyword, since, limit):
+    """
+    Collect messages from a single Telegram channel
+    using asynchronous Telethon.
+    """
     msgs = []
     async for m in client.iter_messages(ch, limit=limit):
         if not is_valid(m, keyword, since):
@@ -73,6 +85,10 @@ async def collect_channel_async(client, ch, keyword, since, limit):
 
 
 async def telegram_collect_async(keyword, chans, limit, period, creds):
+    """
+    Collect Telegram messages from multiple channels
+    using the asynchronous collector.
+    """
     since = get_since_time(period)
     api_id = int(creds["api_id"])
     api_hash = creds["api_hash"]

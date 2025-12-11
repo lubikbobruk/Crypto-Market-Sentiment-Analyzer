@@ -8,6 +8,7 @@ from app.collectors import utils_collectors as utls
 
 
 def collect_reddit(query, subs, limit, period):
+    """Collect Reddit posts matching a keyword from specified subreddits."""
     creds = utls.load_api("reddit")
     reddit = praw.Reddit(**creds)
 

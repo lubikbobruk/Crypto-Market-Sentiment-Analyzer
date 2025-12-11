@@ -8,8 +8,7 @@ from config.config import (
     SECRETS_FILE,
     DEFAULTS_FILE,
     RAW_DIR,
-    DEFAULT_ENCODING,
-)
+    DEFAULT_ENCODING)
 
 
 def is_valid_post(text: str) -> bool:
@@ -34,7 +33,7 @@ def extract_features(m, ch):
         "id": m.id,
         "datetime": dt,
         "text": m.text.strip(),
-        "views": m.views or 0,
+        "views": m.views or 0
     }
 
 
@@ -45,11 +44,15 @@ def get_since_time(period: str):
 
 
 def load_api(source: str):
+    """Load API credentials for the selected data source."""
+
     with open(SECRETS_FILE, "r", encoding="utf-8") as f:
         return yaml.safe_load(f).get(source)
 
 
 def load_defaults(source: str):
+    """Load channels/subreddits from default config."""
+
     with open(DEFAULTS_FILE, "r", encoding="utf-8") as f:
         d = yaml.safe_load(f)["defaults"]
     return d[source], d["limit"], d["period"]

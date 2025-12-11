@@ -1,3 +1,8 @@
+"""
+Streamlit UI helpers for running
+sentiment analysis and displaying results.
+"""
+
 import streamlit as st
 import pandas as pd
 from app.visualization.ui_components import render_review_card, sentiment_face
@@ -27,7 +32,7 @@ def render_run_sentiment_button(
     collect_platform_data,
     run_preprocessing,
     analyze_sentiment,
-    processed_dir,
+    processed_dir
 ):
     """UI + logic for the complete sentiment pipeline."""
 

@@ -1,3 +1,5 @@
+"""Sentiment Analysis page renderer."""
+
 import streamlit as st
 import pandas as pd
 from pathlib import Path
@@ -17,6 +19,7 @@ from app.visualization.ui_components import visualize_graphs
 
 
 def load_sentiment_df(path_str: str):
+    """Load csv with security checks."""
     if not path_str:
         return None
     path = Path(path_str)

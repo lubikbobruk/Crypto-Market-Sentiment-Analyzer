@@ -21,7 +21,7 @@ def remove_urls(text: str) -> str:
 
 
 def remove_mentions(text: str) -> str:
-    """Remove @mentions (Telegram/X/Reddit)."""
+    """Remove @mentions."""
     return MENTION_PATTERN.sub("", text)
 
 
@@ -97,6 +97,7 @@ def classify_sentiment(score: float) -> str:
 
 
 def compute_sentiment(text: str) -> float:
+    """Return the VADER compound sentiment score for the given text."""
     analyzer = get_analyzer()
     scores = analyzer.polarity_scores(str(text))
     return scores["compound"]

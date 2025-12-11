@@ -1,3 +1,8 @@
+"""
+Streamlit UI components for configuration,
+review browsing and sentiment visualization.
+"""
+
 import streamlit as st
 import pandas as pd
 from config.config import SENTIMENT_THRESHOLD
@@ -16,6 +21,7 @@ from app.visualization.plots import (
 
 
 def show_config_summary():
+    """"Visualization of current configuration: platform, coin, period."""
     if not st.session_state.get("config_applied"):
         return
 
@@ -139,7 +145,7 @@ def apply_config_button(platform, coin, period, enabled=True):
 
 
 def render_review_card(row, index, total):
-    """Small, reusable card."""
+    """Review card with option to iterate left/right through all results."""
     author = row.get("author") or row.get("channel") or "Unknown"
     title = row.get("title") or "(no title)"
     text = row.get("text") or "(no text)"
@@ -159,7 +165,7 @@ def render_review_card(row, index, total):
         st.markdown(
             f"<div style='text-align:center; \
             font-weight:bold;'>{title}</div>",
-            unsafe_allow_html=True,
+            unsafe_allow_html=True
         )
 
     with right:
@@ -172,10 +178,12 @@ def render_review_card(row, index, total):
 
 
 def has_enough_data(df: pd.DataFrame, min_count: int = 10):
+    """"Check if data has enough info (rows) to visualize."""
     return df is not None and len(df) >= min_count
 
 
 def visualize_graphs(df, platform, period):
+    """"Visualize all current graphs in one block."""
     st.markdown("---")
     st.subheader("📈 Sentiment Visualizations")
 

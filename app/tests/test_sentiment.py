@@ -1,3 +1,7 @@
+"""
+Tests for sentiment classification with VADER lexicon customization.
+"""
+
 from app.src.utils import classify_sentiment, compute_sentiment
 from app.src.sentiment_core import get_analyzer
 
@@ -11,6 +15,7 @@ def test_classify_sentiment():
 
 
 def test_analyzer_lexicon():
+    """Test custom lexicon integration for precise fit."""
     # ---------------
     # Lexicon check
     # ---------------
@@ -42,6 +47,7 @@ def test_analyzer_lexicon():
 
 
 def test_compute_sentiment():
+    """Test sentiment on different potential real life opinions."""
     # --------------
     # Context check
     # --------------
@@ -75,10 +81,7 @@ def test_compute_sentiment():
     # Positive check
     assert compute_sentiment("LOL this chart looks hilarious 😂") > 0
     assert (
-        compute_sentiment(
-            "ROFL the dip was insane but funny 😂😂"
-        )
-        > 0
+        compute_sentiment("ROFL the dip was insane but funny 😂😂") > 0
     )
     assert compute_sentiment("LMAO crypto never stops surprising me") > 0
     assert compute_sentiment("I love DOGE, it is amazing!") > 0

@@ -19,6 +19,10 @@ def get_sample_reviews(csv_path):
 
 
 def check_data_exists(platform, coin, period):
+    """
+    Checks whether data can be collected for given
+    platform, coin, and period.
+    """
     print(f"\nSearching for {coin} {period} data...")
 
     csv_path = collect_platform_data(platform, coin, period)

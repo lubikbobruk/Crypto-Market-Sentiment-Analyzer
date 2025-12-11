@@ -1,3 +1,5 @@
+"""Config (starting) page renderer."""
+
 import streamlit as st
 from app.visualization.ui_components import (
     select_platform,
@@ -8,6 +10,7 @@ from app.visualization.ui_components import (
 
 
 def render_config_page():
+    """Page 1: Configure settings for sentiment analysis."""
     st.title("🧠 Crypto Sentiment Analyzer")
     st.write("Select data source, coin, and time period.")
 

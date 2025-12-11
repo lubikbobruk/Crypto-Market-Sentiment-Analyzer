@@ -1,3 +1,5 @@
+"""Main streamlit runner."""
+
 import streamlit as st
 from app.visualization.pages.page_config import render_config_page
 from app.visualization.pages.page_results import render_results_page

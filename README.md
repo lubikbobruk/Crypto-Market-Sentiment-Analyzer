@@ -1,12 +1,12 @@
 # 🧠 Crypto Market Sentiment Analyzer
-A Python application that analyzes **social-media sentiment** of cryptocurrency markets and compares it with market indicators such as price movement and volatility. The goal is to explore how public sentiment correlates with short-term market behavior.  
+A Python application that collects and analyzes **social-media sentiment** surrounding the cryptocurrency market, offering a clear view of overall market mood through real-time user discussions. Its purpose is to capture the broader market atmosphere by interpreting user-generated content across selected online platforms and analyzing it.
 This project is developed as part of the **BI-PYT.21** course at **FIT ČVUT**.
 
 ---
 
 ## 🚀 Project Overview
 The application collects data from **Reddit** and **Telegram**, performs **text preprocessing**, applies **sentiment analysis** (VADER) and visualizes results using **CLI** and **Streamlit**.  
-**Current status:** `Phase 6 — PEP8 Audit`  
+**Current status:** `Phase 7 — Docs`  
 
 ---
 

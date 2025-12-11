@@ -93,12 +93,12 @@ def test_menus(monkeypatch):
 # ---------------------
 
 def test_is_logged_in(monkeypatch):
+    """Return False when no valid session file is present."""
     fake_path = Path("test.session")
 
     # Replace the variable SESSION_FILE inside telegram_auth with fake_path.
     monkeypatch.setattr(
         "app.cli.telegram_auth.SESSION_FILE",
-        fake_path,
-    )
+        fake_path)
 
     assert is_telegram_logged_in() is False

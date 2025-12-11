@@ -1,3 +1,7 @@
+"""
+Tests of hard/soft preprocessing steps and other data helpers.
+"""
+
 from app.src.utils import (
     remove_urls,
     remove_mentions,
@@ -120,6 +124,10 @@ def test_empty():
 
 
 def test_combine(tmp_path):
+    """
+    Test that combine_csv correctly merges title/text
+    fields into a 'combined' column.
+    """
     pathes = [
         tmp_path / "csv_both.csv",
         tmp_path / "csv_text.csv",
