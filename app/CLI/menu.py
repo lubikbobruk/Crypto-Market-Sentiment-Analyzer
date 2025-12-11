@@ -1,6 +1,8 @@
+"""Menus for CLI visualization."""
+
 from .utils_cli import *
 from app.src.sentiment import *
-from app.cli.actions import get_sample_reviews
+from app.cli.utils_cli import get_sample_reviews
 from config.config import PROCESSED_DIR
 
 def start_menu():
@@ -18,7 +20,7 @@ def platform_menu():
             "r": "1",
             "reddit": "1",
             "t": "2",
-            "telegram": "2",
+            "telegram": "2"
         }
 
         selection = ask_choice("Choose a platform:", choices, aliases)
@@ -43,7 +45,7 @@ def coin_menu():
             "bnb": "3",
             "sol": "4",
             "xrp": "5",
-            "custom": "6", "c": "6",
+            "custom": "6", "c": "6"
         }
 
         selection = ask_choice("Choose a coin:", choices, aliases)
@@ -72,7 +74,7 @@ def date_menu():
             "d": "1", "day": "1",
             "w": "2", "week": "2",
             "m": "3", "month": "3",
-            "y": "4", "year": "4",
+            "y": "4", "year": "4"
         }
 
         selection = ask_choice("Choose a time period:", choices, aliases)
@@ -103,11 +105,7 @@ def options_menu(csv_path, soft_path, platform):
             clear_screen()
             print("Running sentiment analysis...\n")
 
-            sentiment_csv = analyze_sentiment(
-                soft_path,
-                processed_root=PROCESSED_DIR,
-                source=platform,
-            )
+            sentiment_csv = analyze_sentiment(soft_path,PROCESSED_DIR,platform)
 
             score = total_sentiment(sentiment_csv, platform)
 

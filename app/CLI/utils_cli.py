@@ -1,12 +1,41 @@
-from os import system ,name
+"""Helper functions for CLI implementation."""
+
+from os import system, name
+import pandas as pd
+from pathlib import Path
+from app.cli.actions import collect_platform_data
+
+def get_sample_reviews(csv_path):
+    """"Get at min 3 samples of reviews from csv and display it."""
+    df = pd.read_csv(csv_path)
+    sample = df.sample(min(3, len(df)))
+    print("\nSample posts:\n")
+
+    for _, row in sample.iterrows():
+        print("-" * 50)
+        print(f"Title: {row.get('title', '(no title)')}")
+        print(f"Text: {row.get('text', row.get('combined', '(no text)'))}")
+
+def check_data_exists(platform, coin, period):
+    print(f"\nSearching for {coin} {period} data...")
+
+    csv_path = collect_platform_data(platform, coin, period)
+
+    if not csv_path or not Path(csv_path).exists():
+        print("No data found.")
+        return None
+
+    print(f"Data found: {csv_path}")
+    return csv_path
+
 
 def clear_screen():
     """Clear terminal screen depending on os."""
     # if os is  windows
     if name == 'nt':
-        _ = system('cls')
+        s = system('cls')
     else:
-        _ = system('clear')
+        s = system('clear')
 
 def ask_choice(prompt: str, choices: dict, aliases: dict = None):
     """

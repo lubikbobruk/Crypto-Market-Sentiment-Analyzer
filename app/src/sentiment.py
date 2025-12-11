@@ -1,6 +1,7 @@
 """
 Sentiment analysis using VADER for the Crypto Market Sentiment Analyzer.
 """
+
 import pandas as pd
 from pathlib import Path
 from .utils import classify_sentiment, compute_sentiment
@@ -41,7 +42,6 @@ def total_sentiment(csv_path: str, platform: str):
     if platform == "reddit" and "score" not in df.columns:
         raise ValueError("Reddit sentiment requires a score column for weighting.")
 
-    # reddit by weighted sentiment
     if platform == "reddit":
         df["weight"] = df["score"].clip(lower=0)
 

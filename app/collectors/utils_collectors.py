@@ -1,12 +1,9 @@
 """Helper functions for data collectors and working with APIs."""
 
 import yaml
-from pathlib import Path
 from datetime import datetime, timezone, timedelta
 import pandas as pd
-from config import config
-
-INVALID_MARKERS = {"[removed]", "[deleted]", "", None}
+from config.config import *
 
 def is_valid_post(text: str) -> bool:
     """Basic text validation."""
@@ -28,7 +25,7 @@ def extract_features(m, ch):
         "id": m.id,
         "datetime": dt,
         "text": m.text.strip(),
-        "views": m.views or 0,
+        "views": m.views or 0
     }
 
 def get_since_time(period: str):
@@ -37,11 +34,11 @@ def get_since_time(period: str):
     return datetime.now(timezone.utc) - timedelta(days=days.get(period, 7))
 
 def load_api(source: str):
-    with open(config.SECRETS_FILE, "r", encoding="utf-8") as f:
+    with open(SECRETS_FILE, "r", encoding="utf-8") as f:
         return yaml.safe_load(f).get(source)
 
 def load_defaults(source: str):
-    with open(config.DEFAULTS_FILE, "r", encoding="utf-8") as f:
+    with open(DEFAULTS_FILE, "r", encoding="utf-8") as f:
         d = yaml.safe_load(f)["defaults"]
     return d[source], d["limit"], d["period"]
 
@@ -50,13 +47,12 @@ def save_to_csv(records, folder: str, name: str):
     if not records:
         print("No data to save.")
         return None
-
-    out_dir = config.RAW_DIR / folder
+    out_dir = RAW_DIR / folder
     out_dir.mkdir(parents=True, exist_ok=True)
 
     filename = f"{name}_{datetime.now().date()}.csv"
     path = out_dir / filename
 
-    pd.DataFrame(records).to_csv(path, index=False, encoding=config.DEFAULT_ENCODING)
+    pd.DataFrame(records).to_csv(path, index=False, encoding=DEFAULT_ENCODING)
     print(f"Saved to {path}")
     return path

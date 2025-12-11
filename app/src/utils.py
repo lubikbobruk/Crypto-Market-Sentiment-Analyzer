@@ -1,8 +1,9 @@
-'''Provides a stack of different helper functions.'''
+"""Provides a stack of different helper functions."""
+
 import re
 import pandas as pd
-from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from .sentiment_core import get_analyzer
+from config.config import SENTIMENT_THRESHOLD
 
 URL_PATTERN = re.compile(r"(https?://\S+|www\.\S+)")
 MENTION_PATTERN = re.compile(r"@\w+")
@@ -39,7 +40,6 @@ def remove_punctuation(text: str) -> str:
 def normalize_whitespace(text: str) -> str:
     """Collapse multiple whitespaces into a single space."""
     return MULTISPACE_PATTERN.sub(" ", text)
-
 
 # -----------------------
 # csv processing helpers
@@ -81,9 +81,9 @@ def combine_csv(csv_path: str) -> pd.DataFrame:
 
 def classify_sentiment(score: float) -> str:
     """Interpret VADER compound score."""
-    if score >= 0.05:
+    if score >= SENTIMENT_THRESHOLD:
         return "positive"
-    elif score <= -0.05:
+    elif score <= -SENTIMENT_THRESHOLD:
         return "negative"
     else:
         return "neutral"

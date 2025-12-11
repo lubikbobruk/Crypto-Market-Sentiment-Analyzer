@@ -11,6 +11,9 @@ SRC_DIR = PROJECT_ROOT / "app" / "src"
 REDDIT_RAW = RAW_DIR / "reddit"
 TELEGRAM_RAW = RAW_DIR / "telegram"
 
+# Session files
+SESSION_FILE = DATA_DIR / "telegram_cli.session"
+
 # Lexicon directory
 LEXICON_DIR = SRC_DIR / "lexicon"
 
@@ -23,3 +26,20 @@ DEFAULT_ENCODING = "utf-8-sig"
 DATE_FORMAT = "%Y-%m-%d_%H-%M-%S"
 
 INVALID_MARKERS = {"[removed]", "[deleted]", "", None}
+
+SENTIMENT_THRESHOLD = 0.05
+
+# Streamlit UI constants
+
+PLATFORM_LABELS = ["Reddit", "Telegram"]
+PLATFORM_MAP = {"Reddit": "reddit", "Telegram": "telegram"}
+
+COIN_OPTIONS = ["BTC", "ETH", "BNB", "SOL", "XRP", "Custom"]
+
+PERIOD_LABELS = ["Last day", "Last week", "Last month", "Last year"]
+PERIOD_MAP = {
+    "Last day": "day",
+    "Last week": "week",
+    "Last month": "month",
+    "Last year": "year",
+}

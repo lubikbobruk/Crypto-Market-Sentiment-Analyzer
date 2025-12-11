@@ -1,8 +1,5 @@
 """
 Reddit data collector for Crypto Market Sentiment Analyzer.
-
-Fetches Reddit submissions from the 'cryptocurrency' subreddit based on the given query and datetime. 
-Saves them as a raw csv metadata into data/raw/reddit as <query>_<period>_<date>.csv
 """
 
 import praw
@@ -29,7 +26,7 @@ def collect_reddit(query, subs, limit, period):
                 "author": str(submitions.author),
                 "score": submitions.score,
                 "datetime": datetime.fromtimestamp(submitions.created_utc, tz=timezone.utc).isoformat(),
-                "link": f"https://reddit.com{submitions.permalink}",
+                "link": f"https://reddit.com{submitions.permalink}"
             })
             
     print(f"Collected {len(posts)} posts")

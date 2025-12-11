@@ -3,6 +3,7 @@ Text preprocessing module for Crypto Market Sentiment Analyzer.
 Provides two cleaning pipelines - Soft and Hard preprocessings.
 Applies it to csv and creates 2 new csvs with processed text.
 """
+
 from pathlib import Path
 from .utils import *
 
@@ -40,7 +41,7 @@ def hard_clean(text: str) -> str:
     return text.strip()
 
 
-def preprocess_csv(csv_path: str, source: str, processed_root: Path):
+def preprocess_csv(csv_path: str, processed_root: Path, source: str,):
     """
     Combines title and text cols of csv files
     applies soft & hard cleaning and saves two files.
@@ -70,16 +71,3 @@ def preprocess_csv(csv_path: str, source: str, processed_root: Path):
     print(f"Saved hard cleaned here: {hard_out}")
 
     return soft_out, hard_out
-
-
-
-"""
-FOR CLI run:
-from config.config import PROCESSED_DIR
-
-preprocess_csv(
-    csv_path="data/raw/Reddit/xrp_2025-11-13.csv",
-    source="reddit",
-    processed_root=PROCESSED_DIR
-)
-"""

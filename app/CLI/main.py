@@ -1,15 +1,15 @@
 """
 Main CLI entry point for the Crypto Sentiment Analyzer.
-Platform → Coin → Period → Options (Sentiment / Reviews).
 """
-from app.cli.menu import *
-from app.cli.actions import check_data_exists,run_preprocessing
-from app.cli.utils_cli import clear_screen
 
+from app.cli.menu import *
+from app.cli.actions import run_preprocessing, ensure_telegram_login
+from app.cli.utils_cli import check_data_exists, clear_screen
 
 def main():
     """Main menu loop for the CLI."""
     clear_screen()
+    ensure_telegram_login()
     start_menu()
 
     while True:

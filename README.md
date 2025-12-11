@@ -10,39 +10,6 @@ The application collects data from **Reddit** and **Telegram**, performs **text 
 
 ---
 
-## 🛠️ Installation Guide
-
-### Prerequisites
-- [Anaconda](https://www.anaconda.com/download)
-- Git
-- Python 3.11 (compatible with 3.10-3.12)
-
-### Setting Up
- - Clone the repository first
- - Create a Conda environment
-
-```bash
-conda create -n crypto-sentiment python=3.11 -y
-conda activate crypto-sentiment
-```
- - Install dependencies
-
-```bash
-conda install pandas numpy matplotlib pytest pyyaml -y
-pip install streamlit vaderSentiment yfinance snscrape praw flake8 black telethon
-```
- - Run the Streamlit app
-
-```bash
-#Ensure you are on a right Path and conda is activated
-conda activate crypto-sentiment
-cd *root folder of the project*
-#Run
-python -m streamlit run app\visualization\streamlit_app.py
-```
-
----
-
 ## 🔑 API Setup Guide
 
 This project requires API credentials for Reddit and Telegram to collect data.
@@ -81,6 +48,43 @@ This project requires API credentials for Reddit and Telegram to collect data.
 
 **P.S. You must have internet connection for API calls to work, program can't be run offline.**
 
+---
+
+## 🛠️ Installation Guide
+
+### Prerequisites
+- [Anaconda](https://www.anaconda.com/download)
+- Git
+- Python 3.11 (compatible with 3.10-3.12)
+
+### Setting Up
+ - Clone the repository first
+ - Create a Conda environment
+
+```bash
+conda create -n crypto-sentiment python=3.11 -y
+conda activate crypto-sentiment
+```
+ - Install dependencies
+
+```bash
+conda install pandas numpy matplotlib pytest pyyaml -y
+pip install -r requirements.txt
+```
+ - Run the Streamlit app
+
+```bash
+#Ensure you are on a right Path and conda is activated
+conda activate crypto-sentiment
+cd *root folder of the project*
+
+#Run Streamlit
+python -m streamlit run app\visualization\streamlit_app.py
+
+#Run CLI
+python -m app.cli.main
+```
+
 # 🚀 Project Roadmap
 
 * Phase 0 — Setup: Initialize project structure, config files, and environment. ✅
@@ -107,3 +111,5 @@ This project requires API credentials for Reddit and Telegram to collect data.
 * Phase 11 - Finalize again: Follow steps from phases 7-9 for updated version.
 * Phase 12 - Adding News: Creating collector, preprocessing, sentiment, cli & 
 streamlit
+* Phase 13 - CLIP Embedding Similarity: validate if requested coin text is related to crypto/finance space.  
+* Phase 14 - Multiple coins/sources: Implement system for handling multiple coin and source input.
