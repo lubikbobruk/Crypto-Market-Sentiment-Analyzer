@@ -1,15 +1,17 @@
 """Menus for CLI visualization."""
 
-from .utils_cli import *
-from app.src.sentiment import *
+from app.cli.utils_cli import clear_screen, wait, ask_choice
+from app.src.sentiment import analyze_sentiment, total_sentiment
 from app.cli.utils_cli import get_sample_reviews
 from config.config import PROCESSED_DIR
+
 
 def start_menu():
     clear_screen()
     print("Welcome to Crypto Sentiment Analyzer!")
     print("Analyze crypto sentiment from Reddit or Telegram.\n")
     wait("Press ENTER to start.")
+
 
 def platform_menu():
     while True:
@@ -20,11 +22,11 @@ def platform_menu():
             "r": "1",
             "reddit": "1",
             "t": "2",
-            "telegram": "2"
-        }
+            "telegram": "2"}
 
         selection = ask_choice("Choose a platform:", choices, aliases)
         return selection.lower()
+
 
 def coin_menu():
     while True:
@@ -36,17 +38,18 @@ def coin_menu():
             "3": "BNB",
             "4": "SOL",
             "5": "XRP",
-            "6": "Custom"
-        }
+            "6": "Custom"}
 
         aliases = {
-            "btc": "1", "b": "1",
-            "eth": "2", "e": "2",
+            "btc": "1",
+            "b": "1",
+            "eth": "2",
+            "e": "2",
             "bnb": "3",
             "sol": "4",
             "xrp": "5",
-            "custom": "6", "c": "6"
-        }
+            "custom": "6",
+            "c": "6"}
 
         selection = ask_choice("Choose a coin:", choices, aliases)
 
@@ -59,6 +62,7 @@ def coin_menu():
 
         return selection
 
+
 def date_menu():
     while True:
         clear_screen()
@@ -67,15 +71,17 @@ def date_menu():
             "1": "day",
             "2": "week",
             "3": "month",
-            "4": "year"
-        }
+            "4": "year"}
 
         aliases = {
-            "d": "1", "day": "1",
-            "w": "2", "week": "2",
-            "m": "3", "month": "3",
-            "y": "4", "year": "4"
-        }
+            "d": "1",
+            "day": "1",
+            "w": "2",
+            "week": "2",
+            "m": "3",
+            "month": "3",
+            "y": "4",
+            "year": "4"}
 
         selection = ask_choice("Choose a time period:", choices, aliases)
         return selection
@@ -89,15 +95,20 @@ def options_menu(csv_path, soft_path, platform):
             "1": "Get sentiment",
             "2": "Get reviews",
             "3": "Go back",
-            "4": "Exit"
-        }
+            "4": "Exit"}
 
         aliases = {
-            "s": "1", "sentiment": "1",
-            "r": "2", "review": "2", "reviews": "2",
-            "b": "3", "back": "3", "menu": "3",
-            "e": "4", "exit": "4", "quit": "4"
-        }
+            "s": "1",
+            "sentiment": "1",
+            "r": "2",
+            "review": "2",
+            "reviews": "2",
+            "b": "3",
+            "back": "3",
+            "menu": "3",
+            "e": "4",
+            "exit": "4",
+            "quit": "4"}
 
         selection = ask_choice("What would you like to do?", choices, aliases)
 
@@ -105,7 +116,8 @@ def options_menu(csv_path, soft_path, platform):
             clear_screen()
             print("Running sentiment analysis...\n")
 
-            sentiment_csv = analyze_sentiment(soft_path,PROCESSED_DIR,platform)
+            sentiment_csv = analyze_sentiment(
+                soft_path, PROCESSED_DIR, platform)
 
             score = total_sentiment(sentiment_csv, platform)
 

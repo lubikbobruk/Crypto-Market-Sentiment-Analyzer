@@ -3,11 +3,15 @@ Telegram data collector (sync for CLI, async for Streamlit).
 """
 from telethon import TelegramClient
 from config.config import SESSION_FILE
-from app.collectors.utils_collectors import is_valid, extract_features, get_since_time
+from app.collectors.utils_collectors import (
+    is_valid,
+    extract_features,
+    get_since_time)
 
 # -------------------
 # Sync version (CLI)
 # -------------------
+
 
 def collect_channel(client, ch, keyword, since, limit):
     msgs = []
@@ -22,6 +26,7 @@ def collect_channel(client, ch, keyword, since, limit):
 
     return msgs
 
+
 def collect_telegram(keyword, chans, limit, period, creds):
     since = get_since_time(period)
     api_id = int(creds["api_id"])
@@ -32,7 +37,15 @@ def collect_telegram(keyword, chans, limit, period, creds):
     with TelegramClient(str(SESSION_FILE), api_id, api_hash) as client:
         for ch in chans["channels"]:
             try:
-                msgs.extend(collect_channel(client, ch, keyword, since, limit))
+                msgs.extend(
+                    collect_channel(
+                        client,
+                        ch,
+                        keyword,
+                        since,
+                        limit
+                    )
+                )
             except Exception as e:
                 print(f"Channel {ch} failed: {e}")
 
@@ -41,8 +54,9 @@ def collect_telegram(keyword, chans, limit, period, creds):
 
 
 # --------------------------
-# Async version (Streamlit) 
+# Async version (Streamlit)
 # --------------------------
+
 
 async def collect_channel_async(client, ch, keyword, since, limit):
     msgs = []
@@ -57,6 +71,7 @@ async def collect_channel_async(client, ch, keyword, since, limit):
 
     return msgs
 
+
 async def telegram_collect_async(keyword, chans, limit, period, creds):
     since = get_since_time(period)
     api_id = int(creds["api_id"])
@@ -67,7 +82,12 @@ async def telegram_collect_async(keyword, chans, limit, period, creds):
     async with TelegramClient(str(SESSION_FILE), api_id, api_hash) as client:
         for ch in chans["channels"]:
             try:
-                batch = await collect_channel_async(client, ch, keyword, since, limit)
+                batch = await collect_channel_async(
+                    client,
+                    ch,
+                    keyword,
+                    since,
+                    limit)
                 msgs.extend(batch)
             except Exception as e:
                 print(f"Channel {ch} failed: {e}")

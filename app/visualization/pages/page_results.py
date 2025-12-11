@@ -2,11 +2,19 @@ import streamlit as st
 import pandas as pd
 from pathlib import Path
 
-from app.cli.actions import *
+from app.cli.actions import (
+    run_telegram,
+    collect_platform_data,
+    run_preprocessing)
 from app.src.sentiment import analyze_sentiment
 from config.config import PROCESSED_DIR
-from app.visualization.ui_results import *
+from app.visualization.ui_results import (
+    render_back_button_after_analysis,
+    render_run_sentiment_button,
+    render_sentiment_summary,
+    render_reviews_section)
 from app.visualization.ui_components import visualize_graphs
+
 
 def _load_sentiment_df(path_str: str):
     if not path_str:
@@ -43,16 +51,21 @@ def render_results_page():
                 st.rerun()
 
         with cols[1]:
-            st.write(f"**Platform:** {platform.capitalize()}  •  **Coin:** {coin}  •  **Period:** {period}")
+            st.write(
+                f"**Platform:** {platform.capitalize()}  •  "
+                f"**Coin:** {coin}  •  **Period:** {period}")
 
         st.markdown("---")
 
         render_run_sentiment_button(
-            platform, coin, period,
-            run_telegram, collect_platform_data,
-            run_preprocessing, analyze_sentiment,
-            PROCESSED_DIR
-        )
+            platform,
+            coin,
+            period,
+            run_telegram,
+            collect_platform_data,
+            run_preprocessing,
+            analyze_sentiment,
+            PROCESSED_DIR)
         return
 
     score = st.session_state.get("sentiment_score")
@@ -74,4 +87,4 @@ def render_results_page():
         return
 
     render_reviews_section(df)
-    visualize_graphs(df,platform,period)
+    visualize_graphs(df, platform, period)

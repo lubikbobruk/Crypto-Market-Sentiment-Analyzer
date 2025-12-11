@@ -5,6 +5,7 @@ Initializer of the VADER sentiment analyzer.
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from app.src.lexicon.loader import get_all_lexicons
 
+
 def create_analyzer():
     """Creates VADER analyzer with integrated custom lexicons."""
     analyzer = SentimentIntensityAnalyzer()
@@ -14,7 +15,9 @@ def create_analyzer():
 
     return analyzer
 
+
 ANALYZER = create_analyzer()
+
 
 def get_analyzer():
     return ANALYZER

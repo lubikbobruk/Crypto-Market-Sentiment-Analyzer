@@ -1,5 +1,11 @@
 import streamlit as st
-from app.visualization.ui_components import *
+from app.visualization.ui_components import (
+    select_platform,
+    select_coin,
+    select_period,
+    apply_config_button,
+    show_config_summary)
+
 
 def render_config_page():
     st.title("🧠 Crypto Sentiment Analyzer")

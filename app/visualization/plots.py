@@ -1,11 +1,11 @@
 import pandas as pd
 import streamlit as st
 import plotly.express as px
-import numpy as np
-import altair as alt
+
 
 def has_enough_data(df: pd.DataFrame, min_count: int = 10):
     return df is not None and len(df) >= min_count
+
 
 def plot_sentiment_distribution(df: pd.DataFrame):
     fig = px.histogram(
@@ -14,10 +14,10 @@ def plot_sentiment_distribution(df: pd.DataFrame):
         nbins=30,
         title="Distribution of Sentiment Scores",
         labels={"compound": "VADER Compound Score"},
-        opacity=0.75,
-    )
+        opacity=0.75)
     fig.update_layout(bargap=0.05)
     st.plotly_chart(fig, use_container_width=True)
+
 
 def plot_engagement_vs_sentiment(df: pd.DataFrame, platform: str):
     weight_col = "score" if platform == "reddit" else "views"
@@ -31,10 +31,13 @@ def plot_engagement_vs_sentiment(df: pd.DataFrame, platform: str):
         x=weight_col,
         y="compound",
         title="Engagement vs Sentiment",
-        labels={weight_col: weight_col.capitalize(), "compound": "Sentiment score"},
-        trendline="ols",
-    )
+        labels={
+            weight_col: weight_col.capitalize(),
+            "compound": "Sentiment score",
+        },
+        trendline="ols")
     st.plotly_chart(fig, use_container_width=True)
+
 
 def plot_sentiment_by_source(df: pd.DataFrame, platform: str):
     source_col = "channel" if platform == "telegram" else "subreddit"
@@ -52,9 +55,9 @@ def plot_sentiment_by_source(df: pd.DataFrame, platform: str):
         title="Average Sentiment by Source",
         labels={"compound": "Sentiment Score"},
         color="compound",
-        color_continuous_scale="RdYlGn",
-    )
+        color_continuous_scale="RdYlGn")
     st.plotly_chart(fig, use_container_width=True)
+
 
 def plot_sentiment_pie(df: pd.DataFrame):
     # classify sentiment
@@ -76,13 +79,16 @@ def plot_sentiment_pie(df: pd.DataFrame):
         values="Count",
         title="Sentiment Breakdown",
         color="Sentiment",
-        color_discrete_map={"Positive": "green", "Neutral": "gray", "Negative": "red"},
-    )
+        color_discrete_map={
+            "Positive": "green",
+            "Neutral": "gray",
+            "Negative": "red"})
     st.plotly_chart(fig, use_container_width=True)
+
 
 def plot_post_timeline(df: pd.DataFrame, period: str):
     """Plot posting activity.
-    
+
     - If period == 'day' → group by hour
     - Else → group by date
     """
@@ -107,8 +113,7 @@ def plot_post_timeline(df: pd.DataFrame, period: str):
             df.groupby("hour")
             .size()
             .reset_index(name="count")
-            .sort_values("hour")
-        )
+            .sort_values("hour"))
 
         fig = px.line(
             hourly,
@@ -116,8 +121,7 @@ def plot_post_timeline(df: pd.DataFrame, period: str):
             y="count",
             markers=True,
             title="Hourly Posting Activity (Last 24h)",
-            labels={"hour": "Hour of day", "count": "Posts"},
-        )
+            labels={"hour": "Hour of day", "count": "Posts"})
         fig.update_xaxes(dtick=1)
 
         st.plotly_chart(fig, use_container_width=True)
@@ -138,7 +142,6 @@ def plot_post_timeline(df: pd.DataFrame, period: str):
         y="count",
         markers=True,
         title="Posting Activity Over Time",
-        labels={"date": "Date", "count": "Posts per day"},
-    )
+        labels={"date": "Date", "count": "Posts per day"})
 
     st.plotly_chart(fig, use_container_width=True)

@@ -3,6 +3,7 @@ import pandas as pd
 from app.visualization.ui_components import render_review_card, sentiment_face
 from config.config import SENTIMENT_THRESHOLD
 
+
 def reset_analysis_state():
     """Clear all sentiment-related session data."""
     st.session_state.pop("analysis_started", None)
@@ -11,24 +12,39 @@ def reset_analysis_state():
     st.session_state.pop("review_index", None)
     st.session_state["page"] = "config"
 
+
 def render_back_button_after_analysis():
     if st.button("⬅ Back to configuration"):
         reset_analysis_state()
         st.rerun()
 
-def render_run_sentiment_button(platform, coin, period,
-                                run_telegram, collect_platform_data,
-                                run_preprocessing, analyze_sentiment,
-                                processed_dir):
+
+def render_run_sentiment_button(
+    platform,
+    coin,
+    period,
+    run_telegram,
+    collect_platform_data,
+    run_preprocessing,
+    analyze_sentiment,
+    processed_dir,
+):
     """UI + logic for the complete sentiment pipeline."""
 
-    if st.button("🚀 Run sentiment analysis", type="primary", use_container_width=True):
+    if st.button(
+        "🚀 Run sentiment analysis",
+        type="primary",
+        use_container_width=True
+    ):
         st.session_state["analysis_started"] = True
         st.info("Collecting data...")
 
         # collect raw data first
-        raw_csv = run_telegram(coin, period) if platform == "telegram" \
-                  else collect_platform_data(platform, coin, period)
+        raw_csv = (
+            run_telegram(coin, period)
+            if platform == "telegram"
+            else collect_platform_data(platform, coin, period)
+        )
 
         if not raw_csv:
             st.error("Failed to collect data.")
@@ -39,10 +55,13 @@ def render_run_sentiment_button(platform, coin, period,
 
         st.info("Analyzing sentiment...")
         sentiment_csv = analyze_sentiment(
-            soft_csv, processed_root=processed_dir, source=platform
+            soft_csv,
+            processed_root=processed_dir,
+            source=platform,
         )
 
         from app.src.sentiment import total_sentiment
+
         score = total_sentiment(sentiment_csv, platform)
 
         # Save state
@@ -71,7 +90,8 @@ def render_sentiment_summary(score):
     with left:
         st.markdown(
             f"<div style='font-size:64px; text-align:center;'>{face}</div>",
-            unsafe_allow_html=True)
+            unsafe_allow_html=True,
+        )
 
     with right:
         st.write(f"**Sentiment score:** `{score:.3f}`")

@@ -14,13 +14,16 @@ MULTISPACE_PATTERN = re.compile(r"\s+")
 # Text processing helpers
 # ------------------------
 
+
 def remove_urls(text: str) -> str:
     """Remove URLs."""
     return URL_PATTERN.sub("", text)
 
+
 def remove_mentions(text: str) -> str:
     """Remove @mentions (Telegram/X/Reddit)."""
     return MENTION_PATTERN.sub("", text)
+
 
 def remove_markdown(text: str) -> str:
     """
@@ -29,21 +32,26 @@ def remove_markdown(text: str) -> str:
     """
     return MARKDOWN_LINK_PATTERN.sub("", text)
 
+
 def remove_non_ascii(text: str) -> str:
     """Remove non-ASCII characters (emojis, non-latin symbols)."""
     return "".join(ch for ch in text if ch.isascii())
+
 
 def remove_punctuation(text: str) -> str:
     """Remove punctuation characters."""
     return "".join(ch for ch in text if ch.isalnum() or ch.isspace())
 
+
 def normalize_whitespace(text: str) -> str:
     """Collapse multiple whitespaces into a single space."""
     return MULTISPACE_PATTERN.sub(" ", text)
 
+
 # -----------------------
 # csv processing helpers
 # -----------------------
+
 
 def combine_csv(csv_path: str) -> pd.DataFrame:
     """
@@ -63,21 +71,20 @@ def combine_csv(csv_path: str) -> pd.DataFrame:
 
     if has_title and has_text:
         df["combined"] = (df["title"] + " " + df["text"]).str.strip()
-
     elif has_text:
         df["combined"] = df["text"]
-
     elif has_title:
         df["combined"] = df["title"]
-
     else:
         df["combined"] = ""
 
     return df
 
+
 # ----------
-# Sentiment 
+# Sentiment
 # ----------
+
 
 def classify_sentiment(score: float) -> str:
     """Interpret VADER compound score."""
@@ -87,6 +94,7 @@ def classify_sentiment(score: float) -> str:
         return "negative"
     else:
         return "neutral"
+
 
 def compute_sentiment(text: str) -> float:
     analyzer = get_analyzer()

@@ -5,6 +5,7 @@ import pandas as pd
 from pathlib import Path
 from app.cli.actions import collect_platform_data
 
+
 def get_sample_reviews(csv_path):
     """"Get at min 3 samples of reviews from csv and display it."""
     df = pd.read_csv(csv_path)
@@ -15,6 +16,7 @@ def get_sample_reviews(csv_path):
         print("-" * 50)
         print(f"Title: {row.get('title', '(no title)')}")
         print(f"Text: {row.get('text', row.get('combined', '(no text)'))}")
+
 
 def check_data_exists(platform, coin, period):
     print(f"\nSearching for {coin} {period} data...")
@@ -33,9 +35,10 @@ def clear_screen():
     """Clear terminal screen depending on os."""
     # if os is  windows
     if name == 'nt':
-        s = system('cls')
+        system('cls')
     else:
-        s = system('clear')
+        system('clear')
+
 
 def ask_choice(prompt: str, choices: dict, aliases: dict = None):
     """
@@ -61,6 +64,7 @@ def ask_choice(prompt: str, choices: dict, aliases: dict = None):
                 return val
 
         print("Invalid choice, try again.\n")
+
 
 def wait(message: str = "\nPress ENTER to continue..."):
     """Pause before returning to menu."""

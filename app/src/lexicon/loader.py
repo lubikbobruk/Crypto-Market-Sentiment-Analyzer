@@ -4,8 +4,8 @@ Used to extend VADER with specific words and emoji sentiment scores.
 """
 
 import json
-from pathlib import Path
 from config.config import LEXICON_DIR
+
 
 def get_lexicon(filename: str) -> dict:
     """Load JSON file."""
@@ -16,6 +16,7 @@ def get_lexicon(filename: str) -> dict:
 
     with open(full_path, "r", encoding="utf-8") as f:
         return json.load(f)
+
 
 def get_all_lexicons() -> dict:
     """Combine all lexicon overrides into one dict."""

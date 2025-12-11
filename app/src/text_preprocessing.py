@@ -5,7 +5,15 @@ Applies it to csv and creates 2 new csvs with processed text.
 """
 
 from pathlib import Path
-from .utils import *
+from .utils import (
+    remove_urls,
+    remove_mentions,
+    normalize_whitespace,
+    remove_markdown,
+    remove_non_ascii,
+    remove_punctuation,
+    combine_csv)
+
 
 def soft_clean(text: str) -> str:
     """
@@ -41,7 +49,7 @@ def hard_clean(text: str) -> str:
     return text.strip()
 
 
-def preprocess_csv(csv_path: str, processed_root: Path, source: str,):
+def preprocess_csv(csv_path: str, processed_root: Path, source: str):
     """
     Combines title and text cols of csv files
     applies soft & hard cleaning and saves two files.

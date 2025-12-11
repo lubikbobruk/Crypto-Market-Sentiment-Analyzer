@@ -5,6 +5,7 @@ from telethon.sync import TelegramClient
 from telethon import TelegramClient as AsyncClient
 from config.config import SESSION_FILE, SECRETS_FILE
 
+
 def telegram_login():
     """CLI telegram login check with telephone, code and password."""
     with open(SECRETS_FILE, "r") as f:
@@ -14,7 +15,7 @@ def telegram_login():
     api_hash = creds["api_hash"]
 
     client = TelegramClient(str(SESSION_FILE), api_id, api_hash)
-    
+
     client.start()
     client.disconnect()
 
@@ -40,7 +41,7 @@ def is_telegram_logged_in() -> bool:
     try:
         # Streamlit compatible async call runner
         import asyncio
-        
+
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
 

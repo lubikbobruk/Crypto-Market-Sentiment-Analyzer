@@ -6,6 +6,7 @@ import pandas as pd
 from pathlib import Path
 from .utils import classify_sentiment, compute_sentiment
 
+
 def analyze_sentiment(csv_path: str, processed_root: Path, source: str):
     """
     Runs VADER sentiment on a soft-preprocessed CSV.
@@ -13,7 +14,9 @@ def analyze_sentiment(csv_path: str, processed_root: Path, source: str):
     df = pd.read_csv(csv_path)
 
     if "clean_soft" not in df.columns:
-        raise ValueError("CSV must be soft preprocessed first.")
+        raise ValueError(
+            "CSV must be soft preprocessed first."
+        )
 
     # Compute VADER sentiment
     df["compound"] = df["clean_soft"].apply(compute_sentiment)
@@ -30,9 +33,11 @@ def analyze_sentiment(csv_path: str, processed_root: Path, source: str):
     print(f"Sentiment computed and saved here: {out_path}")
     return out_path
 
+
 def total_sentiment(csv_path: str, platform: str):
     """
-    Compute total sentiment score weighted by post score(reddit) & views (telegram). 
+    Compute total sentiment score weighted by post score (reddit)
+    & views (telegram).
     """
     df = pd.read_csv(csv_path)
 
@@ -40,7 +45,9 @@ def total_sentiment(csv_path: str, platform: str):
         raise ValueError("CSV does not contain sentiment info.")
 
     if platform == "reddit" and "score" not in df.columns:
-        raise ValueError("Reddit sentiment requires a score column for weighting.")
+        raise ValueError(
+            "Reddit sentiment requires a score column for weighting."
+        )
 
     if platform == "reddit":
         df["weight"] = df["score"].clip(lower=0)
@@ -55,19 +62,21 @@ def total_sentiment(csv_path: str, platform: str):
         weighted_average = weighted_sum / total_weight
 
         return round(weighted_average, 3)
-    
+
     if platform == "telegram":
-            if "views" not in df.columns:
-                raise ValueError("Telegram messages must include a 'views' column.")
+        if "views" not in df.columns:
+            raise ValueError(
+                "Telegram messages must include a 'views' column."
+            )
 
-            df["weight"] = df["views"].fillna(0).clip(lower=1)
+        df["weight"] = df["views"].fillna(0).clip(lower=1)
 
-            total_weight = df["weight"].sum()
+        total_weight = df["weight"].sum()
 
-            if total_weight == 0:
-                return round(df["compound"].mean(), 3)
+        if total_weight == 0:
+            return round(df["compound"].mean(), 3)
 
-            weighted_sum = (df["compound"] * df["weight"]).sum()
-            weighted_avg = weighted_sum / total_weight
+        weighted_sum = (df["compound"] * df["weight"]).sum()
+        weighted_avg = weighted_sum / total_weight
 
-            return round(weighted_avg, 3)
+        return round(weighted_avg, 3)

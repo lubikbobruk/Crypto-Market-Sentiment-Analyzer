@@ -1,7 +1,7 @@
 """This file is a container for global variables used in the project."""
 from pathlib import Path
 
-# Paths 
+# Paths
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = PROJECT_ROOT / "data"
 CONFIG_DIR = PROJECT_ROOT / "config"
