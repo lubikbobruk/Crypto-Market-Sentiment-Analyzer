@@ -1,5 +1,5 @@
 """
-Tests for CLI utilities, menus, actions, and Telegram authentication.
+Tests for CLI utilities, menus and Telegram authentication.
 """
 
 from pathlib import Path

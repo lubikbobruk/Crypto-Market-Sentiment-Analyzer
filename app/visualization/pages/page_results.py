@@ -16,7 +16,7 @@ from app.visualization.ui_results import (
 from app.visualization.ui_components import visualize_graphs
 
 
-def _load_sentiment_df(path_str: str):
+def load_sentiment_df(path_str: str):
     if not path_str:
         return None
     path = Path(path_str)
@@ -81,7 +81,7 @@ def render_results_page():
     st.markdown("---")
     st.subheader("Sample posts")
 
-    df = _load_sentiment_df(sentiment_path)
+    df = load_sentiment_df(sentiment_path)
     if df is None or df.empty:
         st.info("No posts available.")
         return

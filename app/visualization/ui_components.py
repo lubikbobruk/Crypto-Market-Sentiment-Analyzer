@@ -7,14 +7,12 @@ from config.config import (
     PLATFORM_MAP,
     COIN_OPTIONS,
     PERIOD_LABELS,
-    PERIOD_MAP,
-)
+    PERIOD_MAP)
 from app.visualization.plots import (
     plot_sentiment_distribution,
     plot_sentiment_by_source,
     plot_sentiment_pie,
-    plot_post_timeline,
-)
+    plot_post_timeline)
 
 
 def show_config_summary():
@@ -131,7 +129,7 @@ def apply_config_button(platform, coin, period, enabled=True):
     if st.button(
         "✅ Apply configuration",
         disabled=not enabled,
-        use_container_width=True,
+        use_container_width=True
     ):
         st.session_state["cfg_platform"] = platform
         st.session_state["cfg_coin"] = coin

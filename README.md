@@ -6,7 +6,7 @@ This project is developed as part of the **BI-PYT.21** course at **FIT ČVUT**.
 
 ## 🚀 Project Overview
 The application collects data from **Reddit** and **Telegram**, performs **text preprocessing**, applies **sentiment analysis** (VADER) and visualizes results using **CLI** and **Streamlit**.  
-**Current status:** `Phase 5 — Streamlit UI`  
+**Current status:** `Phase 6 — PEP8 Audit`  
 
 ---
 
@@ -99,7 +99,7 @@ python -m app.cli.main
 
 * Phase 5 — Streamlit UI: Interactive browsing, filters, visualization. ✅
 
-* Phase 6 — PEP8 Audit: Ensure full compliance with codestyle.
+* Phase 6 — PEP8 Audit: Ensure full compliance with codestyle. ✅
 
 * Phase 7 — Docs: README, architecture notes, final cleanup.
 
