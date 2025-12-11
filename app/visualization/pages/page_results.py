@@ -6,6 +6,7 @@ from app.cli.actions import *
 from app.src.sentiment import analyze_sentiment
 from config.config import PROCESSED_DIR
 from app.visualization.ui_results import *
+from app.visualization.ui_components import visualize_graphs
 
 def _load_sentiment_df(path_str: str):
     if not path_str:
@@ -73,3 +74,4 @@ def render_results_page():
         return
 
     render_reviews_section(df)
+    visualize_graphs(df,platform,period)

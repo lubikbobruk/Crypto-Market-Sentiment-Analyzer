@@ -3,6 +3,7 @@ from config.config import SENTIMENT_THRESHOLD
 from app.cli.telegram_auth import is_telegram_logged_in
 from config.config import (PLATFORM_LABELS, PLATFORM_MAP,COIN_OPTIONS,
                            PERIOD_LABELS,   PERIOD_MAP)
+from app.visualization.plots import *
 
 def show_config_summary():
     if not st.session_state.get("config_applied"):
@@ -129,3 +130,26 @@ def render_review_card(row, index, total):
 
     st.write(text)
     st.markdown(f"*Sentiment:* **{label}** · Score `{score:.3f}`")
+
+def has_enough_data(df: pd.DataFrame, min_count: int = 10):
+    return df is not None and len(df) >= min_count
+
+def visualize_graphs(df, platform, period):
+    st.markdown("---")
+    st.subheader("📈 Sentiment Visualizations")
+
+    if not has_enough_data(df):
+        st.info("Not enough data for visualization (need at least 10 posts).")
+        return
+
+    st.markdown("### 1. Sentiment Distribution")
+    plot_sentiment_distribution(df)
+
+    st.markdown("### 2. Sentiment by Source")
+    plot_sentiment_by_source(df, platform)
+
+    st.markdown("### 3. Sentiment Breakdown")
+    plot_sentiment_pie(df)
+
+    st.markdown("### 4. Posting Activity Timeline")
+    plot_post_timeline(df, period)

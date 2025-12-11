@@ -97,7 +97,7 @@ python -m app.cli.main
 
 * Phase 4 — CLI: Enable preprocessing, sentiment scoring, and exporting via CLI. ✅
 
-* Phase 5 — Streamlit UI: Interactive browsing, filters, visualization.
+* Phase 5 — Streamlit UI: Interactive browsing, filters, visualization. ✅
 
 * Phase 6 — PEP8 Audit: Ensure full compliance with codestyle.
 
