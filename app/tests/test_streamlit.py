@@ -31,7 +31,7 @@ def test_apply_config_button(monkeypatch):
 # Fake sentiment run testing
 # ---------------------------
 
-
+# @generated "partially" ChatGPT 5.1
 def test_render_run_sentiment_button(monkeypatch, tmp_path):
     """Simulates full sentiment pipeline and checks session state updates."""
 

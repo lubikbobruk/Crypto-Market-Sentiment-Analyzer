@@ -6,7 +6,7 @@ This project is developed as part of the **BI-PYT.21** course at **FIT ČVUT**.
 
 ## 🚀 Project Overview
 The application collects data from **Reddit** and **Telegram**, performs **text preprocessing**, applies **sentiment analysis** (VADER) and visualizes results using **CLI** and **Streamlit**.  
-**Current status:** `Phase 7 — Docs`  
+**Current status:** `First prototype`  
 
 ---
 
@@ -68,7 +68,6 @@ conda activate crypto-sentiment
  - Install dependencies
 
 ```bash
-conda install pandas numpy matplotlib pytest pyyaml -y
 pip install -r requirements.txt
 ```
  - Run the Streamlit app
@@ -83,6 +82,12 @@ python -m streamlit run app\visualization\streamlit_app.py
 
 #Run CLI
 python -m app.cli.main
+
+# For unit testing
+pytest -v
+
+# For pep8 audit
+flake8 .
 ```
 
 # 🚀 Project Roadmap
@@ -101,7 +106,7 @@ python -m app.cli.main
 
 * Phase 6 — PEP8 Audit: Ensure full compliance with codestyle. ✅
 
-* Phase 7 — Docs: README, architecture notes, final cleanup.
+* Phase 7 — Docs: README, architecture notes, final cleanup. ✅
 
 **Optional for future development:**
 

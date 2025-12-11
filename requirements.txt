@@ -1,95 +1,42 @@
 altair==5.5.0
-attrs==25.4.0
 beautifulsoup4==4.14.2
 black==25.9.0
 blinker==1.9.0
-Bottleneck @ file:///C:/miniconda3/conda-bld/bottleneck_1761938191468/work
 cachetools==6.2.1
-certifi==2025.4.26
-cffi==2.0.0
-charset-normalizer==3.4.4
-click==8.3.0
-colorama @ file:///C:/ci_311/colorama_1676422310965/work
-contourpy @ file:///C:/b/abs_f2u2o_8s9g/croot/contourpy_1732540071787/work
-curl_cffi==0.13.0
-cycler @ file:///tmp/build/80754af9/cycler_1637851556182/work
-distlib==0.3.9
-filelock==3.18.0
+colored==2.3.1
+curl-cffi==0.13.0
 flake8==7.3.0
-fonttools @ file:///C:/miniconda3/conda-bld/fonttools_1759754888085/work
-frozendict==2.4.6
-gitdb==4.0.12
-GitPython==3.1.45
-idna==3.11
-iniconfig @ file:///C:/b/abs_70kaor_ccd/croot/iniconfig_1752653749904/work
-Jinja2==3.1.6
+gitpython==3.1.45
 jsonschema==4.25.1
-jsonschema-specifications==2025.9.1
-kiwisolver @ file:///C:/b/abs_faf90xet7a/croot/kiwisolver_1737040915779/work
 lxml==6.0.2
-MarkupSafe==3.0.3
+markdown-it-py==4.0.0
+markupsafe==3.0.3
 matplotlib==3.10.6
-mccabe==0.7.0
-mkl-service==2.5.2
-mkl_fft @ file:///C:/miniconda3/conda-bld/mkl_fft_1761592920106/work
-mkl_random @ file:///C:/miniconda3/conda-bld/mkl_random_1761593150425/work
-multitasking==0.0.12
-mypy_extensions==1.1.0
 narwhals==2.10.2
-numexpr @ file:///C:/miniconda3/conda-bld/numexpr_1762165733453/work
-numpy @ file:///C:/miniconda3/conda-bld/numpy_and_numpy_base_1761914512292/work/dist/numpy-2.3.4-cp311-cp311-win_amd64.whl#sha256=6e32b9352aab2006df5df201266f5c0ef5b6f40e797319dbaca76e4423f0c2ab
-packaging==25.0
-pandas @ file:///C:/miniconda3/conda-bld/pandas_1762332399011/work/dist/pandas-2.3.3-cp311-cp311-win_amd64.whl#sha256=6a3251bc4b4b7b67e557583d27c46e59dd38a774af7276284aaf0d4b219ca605
-pathspec==0.12.1
-patsy==1.0.2
-peewee==3.18.3
-pillow @ file:///C:/b/abs_b50vowcrzo/croot/pillow_1738010273782/work
-pipenv==2025.0.2
-platformdirs==4.3.7
-plotly==6.5.0
-pluggy @ file:///C:/b/abs_dfec_m79vo/croot/pluggy_1733170145382/work
+numpy==2.3.4
+pandas==2.3.3
 praw==7.8.1
 prawcore==2.4.0
 protobuf==6.33.0
-pyaes==1.6.1
 pyarrow==21.0.0
-pyasn1==0.6.1
-pycodestyle==2.14.0
-pycparser==2.23
+pydantic==2.9.2  # (streamlit indirect dependency; optional but recommended)
 pydeck==0.9.1
-pyflakes==3.4.0
-Pygments @ file:///C:/b/abs_e4bg5vh5j_/croot/pygments_1744667628203/work
-pyparsing @ file:///C:/b/abs_40z8gyj9wi/croot/pyparsing_1731445739241/work
-PyQt6==6.9.1
-PyQt6_sip @ file:///C:/miniconda3/conda-bld/pyqt-split_1757511038427/work/pyqt_sip
-PySocks==1.7.1
-pytest @ file:///C:/miniconda3/conda-bld/pytest_1758125281680/work
-python-dateutil @ file:///C:/b/abs_3au_koqnbs/croot/python-dateutil_1716495777160/work
-pytokens==0.2.0
-pytz @ file:///C:/b/abs_f8wdzeix0n/croot/pytz_1752135878094/work
-PyYAML @ file:///C:/b/abs_14xkfs39bx/croot/pyyaml_1728657968772/work
-referencing==0.37.0
+pygments==2.19.1
+pysocks==1.7.1
+pytest==8.4.2
+pyyaml==6.0.2
 requests==2.32.5
-rpds-py==0.28.0
-rsa==4.9.1
+rich==14.2.0
 scipy==1.16.3
-sip @ file:///C:/b/abs_f6ow8vlbb7/croot/sip_1756224172742/work
-six @ file:///C:/b/abs_149wuyuo1o/croot/six_1744271521515/work
-smmap==5.0.2
 snscrape==0.7.0.20230622
-soupsieve==2.8
 statsmodels==0.14.6
 streamlit==1.51.0
-Telethon==1.42.0
+telethon==1.42.0
 tenacity==9.1.2
 toml==0.10.2
-tornado @ file:///C:/b/abs_7dzpc171lf/croot/tornado_1748956950306/work
-typing_extensions==4.15.0
-tzdata @ file:///croot/python-tzdata_1746123641790/work
-update-checker==0.18.0
+typing-extensions==4.15.0
 urllib3==2.5.0
-vaderSentiment==3.3.2
-virtualenv==20.31.0
+vadersentiment==3.3.2
 watchdog==6.0.0
 websocket-client==1.9.0
 websockets==15.0.1

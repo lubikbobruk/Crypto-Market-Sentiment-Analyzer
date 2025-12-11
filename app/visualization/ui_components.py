@@ -144,6 +144,7 @@ def apply_config_button(platform, coin, period, enabled=True):
         st.success("Configuration applied!")
 
 
+# @generated "all" ChatGPT 5.1 : generated a block for right/left scroll
 def render_review_card(row, index, total):
     """Review card with option to iterate left/right through all results."""
     author = row.get("author") or row.get("channel") or "Unknown"
