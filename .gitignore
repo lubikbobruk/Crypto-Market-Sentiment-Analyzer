@@ -54,12 +54,18 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
-# ---- Data ----
-data/raw/
-data/processed/
+# ---- Data (generated runtime content) ----
+data/raw/**/*
+data/processed/**/*
 data/*.csv
 data/*.json
 data/*.xlsx
+data/*.session
+
+# Keep directory structure
+!data/.gitkeep
+!data/raw/.gitkeep
+!data/processed/.gitkeep
 
 # ---- Reports ----
 reports/figures/
