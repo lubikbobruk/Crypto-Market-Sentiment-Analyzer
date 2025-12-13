@@ -12,19 +12,35 @@ The application collects data from **Reddit** and **Telegram**, performs **text 
 
 ## 🔑 API Setup Guide
 
-This project requires API credentials for Reddit and Telegram to collect data.
+This project requires API credentials for **Reddit** and **Telegram**.  
+Credentials are **not included in the repository** for security reasons.
+
+Configuration is done via a local file:
+
+A template file `config/secrets.yaml.example` is provided.
+
+**Before running the project, create your local secrets file**:
+
+```bash
+# Ensure you are on a correct branch
+git checkout semestral
+# Create a local secrets file
+cp config/secrets.yaml.example config/secrets.yaml
+```
+Then **open config/secrets.yaml and fill in your API credentials** according to the instructions below.
 
 ### 🟥 Reddit API
-1. Visit [https://www.reddit.com/prefs/apps](https://www.reddit.com/prefs/apps).  
-2. Click **Create another app** and fill in:
+1. Visit [https://www.reddit.com/prefs/apps](https://www.reddit.com/prefs/apps) and log in or register to your Reddit account. **Make sure your email is verified**.
+2. In the top-left corner, click **“Are you a developer? Create an app**”.
+3. Click **Create another app** and fill in:
    - **Name:** `CryptoSentimentAnalyzer`  
    - **Type:** `script`  
    - **Redirect URI:** `http://localhost:8080`  
-3. After creation, copy:
+4. After creation, copy:
    - `client_id` (shown under “personal use script”)  
    - `client_secret`  
    - `user_agent`
-4. Add them to your config file:
+5. Add them to your config file:
 
    ```yaml
    reddit:
@@ -46,7 +62,8 @@ This project requires API credentials for Reddit and Telegram to collect data.
      api_id: *here*
      api_hash: *here*
 
-**P.S. You must have internet connection for API calls to work, program can't be run offline.**
+**P.S. An active internet connection is required for API calls.**
+
 
 ---
 
@@ -70,25 +87,31 @@ conda activate crypto-sentiment
 ```bash
 pip install -r requirements.txt
 ```
- - Run the Streamlit app
+ - Running the Application
 
 ```bash
 #Ensure you are on a right Path and conda is activated
 conda activate crypto-sentiment
 cd *root folder of the project*
 
-#Run Streamlit
-python -m streamlit run app\visualization\streamlit_app.py
-
-#Run CLI
+#Run CLI (first for telegram authentification)
 python -m app.cli.main
 
+#Run Streamlit
+python -m streamlit run app\visualization\streamlit_app.py
+```
+
+- Developer Utilities
+
+```bash
 # For unit testing
 pytest -v
 
 # For pep8 audit
 flake8 .
 ```
+
+---
 
 # 🚀 Project Roadmap
 

@@ -41,3 +41,4 @@ watchdog==6.0.0
 websocket-client==1.9.0
 websockets==15.0.1
 yfinance==0.2.66
+plotly==6.5.0

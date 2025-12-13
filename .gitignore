@@ -61,9 +61,6 @@ data/*.csv
 data/*.json
 data/*.xlsx
 
-# ---- Config / Secrets ----
-config/secrets.yaml
-
 # ---- Reports ----
 reports/figures/
 reports/*.pdf
