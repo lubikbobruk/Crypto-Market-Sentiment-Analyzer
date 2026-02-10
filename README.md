@@ -1,6 +1,5 @@
 # 🧠 Crypto Market Sentiment Analyzer
 A Python application that collects and analyzes **social-media sentiment** surrounding the cryptocurrency market, offering a clear view of overall market mood through real-time user discussions. Its purpose is to capture the broader market atmosphere by interpreting user-generated content across selected online platforms and analyzing it.
-This project is developed as part of the **BI-PYT.21** course at **FIT ČVUT**.
 
 ---
 
@@ -141,3 +140,10 @@ flake8 .
 streamlit
 * Phase 13 - CLIP Embedding Similarity: validate if requested coin text is related to crypto/finance space.  
 * Phase 14 - Multiple coins/sources: Implement system for handling multiple coin and source input.
+
+---
+
+## Origin & Ownership
+ 
+This project was originaly developed as part of the **BI-PYT.21** course at **FIT ČVUT**.
+Now refactored and maintained independently.
